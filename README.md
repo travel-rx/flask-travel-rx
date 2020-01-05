@@ -7,6 +7,7 @@ TravelRx was a 4 person, 13-day project built to allow a user to store their med
 * `pip3 install flask`
 * `gem install travis`
 * `pip3 install pytest coverage`
+* `pip3 install python-dotenv`
 
 ## To Run
 * `python3 app.py`
