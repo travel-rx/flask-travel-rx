@@ -1,6 +1,7 @@
 import unittest
-import json
-import app
+# import json
+# import app
+BASE_URL = 'http://localhost:5000/'
 
 class TestApp(unittest.TestCase):
 
