@@ -1,11 +1,12 @@
-
 language: python
 python:
-  - "3.8"
+- '3.8'
 install:
-  - pip install -r requirements.txt
+- pip install -r requirements.txt
 deploy:
   provider: heroku
   app: flask-travel-rx
+  api_key:
+    secure: FGTcx8D9DALL4gVeI/iVj6k7j3KxYwTv8uYcfIJBNFEsrTQ5Yn5iahBFf6HeBsW5uAYY1LlCMQugz8++kC48i9thAnSjBezAZbr+qK6sGCK1S2Go2avkadZtOTD5uuBCycsnGc6+l5yHhf3g+xbqGVRdRNFssKisaxaoQNGbeY9I2uLmtd7NmYdDYSbBzA6cv4oPlqwWd/lLV1B61P/y208omjpnZo6wkzFCN8uqoMMfftFL2kbrEH5ZWG3cEdxrnVMaIqLh5+0u8edeW64oNgbVXaSwf27BfZx3AGbz0lC1lABTJk7i0cwfpBICddv1XOGSQFtVkw47WJEaDMJKnpPyXHCCxde8zVgoE/su0Os46T4mbACKPXIDDWUmm2MbJxtaMN9X0dIwYH8yreAcl5d/OwHaADtFuf1n8upjv6AGm9cyr+V4GY6roWpSNgyFYGK6p+Xi3QPi9NBXoqBciXDVeEBsjKPlKkUxYDG6SiZcFfaDuhb5YMnXG5hFMzEaQLnfbcV8/+UD1JrkLneVnpxIhXPEq6NgApj4FzwABHBVv+IZOaNEMEIyMPinecB2mU/8uIcOffdBxzK+J/RgIPc7sjocMkbBfpAj/ZB8hJmdK7KnfxxWs+6Faql7S844F0jIk1awPxM/ZWVkHH/Nlim3Aoqto6fmtNpCH7vOpbM=
 script:
-  - python -m unittest
+- python -m unittest
