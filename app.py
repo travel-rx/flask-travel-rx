@@ -12,7 +12,7 @@ app.config["DEBUG"] = True
 # def home():
 #     return "<h1>Distant Reading Archive</h1><p>This site is a prototype API for distant reading of science fiction novels.</p>"
 
-@app.route('/api/v1/medicines', methods=['GET'])
+@app.route('/api/v1/search', methods=['GET'])
 def medicines_index():
     # search = 'openfda.brand_name:xanax'
     # api_key = 'FDA_API_KEY'
