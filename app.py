@@ -19,7 +19,7 @@ def medicine_search():
     json_response = response.json()
     brand_name = json_response['results'][0]['openfda']['brand_name'][0]
     generic_name = json_response['results'][0]['openfda']['generic_name'][0]
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     return jsonify({"name": brand_name, "generic_name": generic_name})
 
 app.run()
