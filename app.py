@@ -3,13 +3,24 @@ from flask import request, jsonify
 from dotenv import load_dotenv
 import requests
 import json
-
+from flask.ext.sqlalchemy import SQLAlchemy
 import os
 
+# Init app
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
 port = int(os.environ.get("PORT", 5000))
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+
+# Database
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+#  
+
 @app.route('/', methods=['GET'])
 def home():
     return "<h1>TravelRx</h1><p>This site is the homepage for the back end of TravelRx. Please visit our search endpoint at /api/v1/search or a user’s medicine cabinet at /api/v1/medicines.</p>"
