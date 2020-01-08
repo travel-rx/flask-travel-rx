@@ -119,7 +119,6 @@ def delete_medicine(user_id, id):
     med = Medicine.query.get(id)
     db.session.delete(med)
     db.session.commit()
-    all_meds = Medicine.query.all()
     return redirect(f'/api/v1/user/{user}/medicines')
 
 
