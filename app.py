@@ -140,5 +140,4 @@ def delete_medicine(user_id, id):
     return redirect(f'/api/v1/user/{user}/medicines')
 
 if __name__ == "main":
-    # app.run()
     app.run(debug=True, host='0.0.0.0', port=port)
