@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, redirect
 from dotenv import load_dotenv
 import requests
 import json
@@ -86,9 +86,9 @@ medicines_schema = MedicineSchema(many=True)
 # Endpoints
 @app.route('/', methods=['GET'])
 def home():
-    return "<h1>TravelRx</h1><p>This site is the homepage for the back end of TravelRx.  Please visit our search endpoint at /api/v1/search or a user's medicine cabinet at /api/v1/medicines.</p>"
+    return "<h1>TravelRx</h1><p>This site is the homepage for the back end of TravelRx.  Please visit our search endpoint at /api/v1/search?drug=<drug_name or a user's medicine cabinet at /api/v1/medicines.</p>"
 
-# Search for Generic Name of a Medicine
+# Search for generic name of a Medicine
 @app.route('/api/v1/search', methods=['GET'])
 def medicine_search():
     drug = request.args.get('drug', '')
@@ -98,14 +98,14 @@ def medicine_search():
     generic_name = json_response['results'][0]['openfda']['generic_name'][0]
     return jsonify({"name": brand_name, "generic_name": generic_name})
 
-# Get All Medicines
+# Get all medicines
 @app.route('/api/v1/user/<user_id>/medicines', methods=['GET'])
 def get_medicines(user_id):
   all_meds = Medicine.query.all()
   result = medicines_schema.dump(all_meds)
   return jsonify(result)
 
-# Get Single Medicine
+# Get single medicine
 @app.route('/api/v1/user/<user_id>/medicines/<id>', methods=['GET'])
 def get_medicine(user_id, id):
     user = User.query.get(user_id)
@@ -113,7 +113,30 @@ def get_medicine(user_id, id):
     result = medicine_schema.dump(med)
     return jsonify(result)
 
-# Add Medicine to User's Medicine Cabinet
+# Add new medicine to user's medicine cabinet
+@app.route('/api/v1/user/<user_id>/medicines', methods=['POST'])
+def add_medicine(user_id):
+    name = request.json['name']
+    generic_name = request.json['generic_name']
+    dosage_amt = request.json['dosage_amt']
+    with_food = request.json['with_food']
+    frequency = request.json['frequency']
+    user_id = user_id
+
+    new_medicine = Medicine(name, generic_name, dosage_amt, with_food, frequency, user_id)
+    db.session.add(new_medicine)
+    db.session.commit()
+
+    return redirect('get_medicines', code=303)
+
+# Delete single medicine
+@app.route('/api/v1/user/<user_id>/medicines/<id>', methods=['DELETE'])
+def delete_medicine(user_id, id):
+    user = User.query.get(user_id)
+    med = Medicine.query.get(id)
+    db.session.delete(med)
+    db.session.commit()
+    return redirect(f'/api/v1/user/{user}/medicines')
 
 if __name__ == "main":
     # app.run()
