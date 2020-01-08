@@ -31,7 +31,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
     email = db.Column(db.String(), unique=True)
-    medicines = relationship("Medicine", back_populates="user")
+    medicines = db.relationship("Medicine", backref="user")
 
     def __init__(self, name, email):
         self.name = name
@@ -51,7 +51,6 @@ class Medicine(db.Model):
     with_food = db.Column(db.Boolean)
     frequency = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    user = relationship("User", back_populates="medicine")
 
     def __init__(self, name, generic_name, dosage_amt, with_food, frequency, user_id):
         self.name = name
@@ -79,8 +78,8 @@ def medicine_search():
     return jsonify({"name": brand_name, "generic_name": generic_name})
 
 # Get All Medicines
-@app.route('/api/v1/user/<user_id>/medicine/<id>', methods=['GET'])
-def get_medicines():
+@app.route('/api/v1/user/<user_id>/medicines', methods=['GET'])
+def get_medicines(user_id):
   all_meds = Medicine.query.all()
   import pdb; pdb.set_trace()
 
