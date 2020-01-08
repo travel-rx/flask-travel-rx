@@ -6,6 +6,7 @@ import os
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.orm import relationship
+from flask_seeder import FlaskSeeder
 
 # Init app
 app = Flask(__name__)
@@ -19,6 +20,9 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
+seeder = FlaskSeeder()
+seeder.init_app(app, db)
 
 # User Class/Model
 class User(db.Model):
@@ -80,7 +84,7 @@ def get_medicines():
   all_meds = Medicine.query.all()
   import pdb; pdb.set_trace()
 
-  # result = products_schema.dump(all_products)
+
   return jsonify(result.data)
 
 if __name__ == "main":
