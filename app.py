@@ -120,7 +120,6 @@ def delete_medicine(user_id, id):
     db.session.delete(med)
     db.session.commit()
     all_meds = Medicine.query.all()
-    # return medicines_schema.jsonify(all_meds), 204
     return redirect(f'/api/v1/user/{user}/medicines')
 
 
