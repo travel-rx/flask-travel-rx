@@ -127,6 +127,23 @@ def get_medicine(user_id, id):
     user = User.query.get(user_id)
     return redirect(f'/api/v1/user/{user}/medicines')
 
+# Add new medicine to user's medicine cabinet
+@app.route('/api/v1/user/<user_id>/medicines', methods=['POST'])
+def add_medicine(user_id):
+    name = request.json['name']
+    generic_name = request.json['generic_name']
+    dosage_amt = request.json['dosage_amt']
+    with_food = request.json['with_food']
+    frequency = request.json['frequency']
+    user_id = user_id
+
+    new_medicine = Medicine(name, generic_name, dosage_amt, with_food, frequency, user_id)
+    db.session.add(new_medicine)
+    db.session.commit()
+
+    user = User.query.get(user_id)
+    return redirect(f'/api/v1/user/{user}/medicines')
+
 # Delete single medicine
 @app.route('/api/v1/user/<user_id>/medicines/<id>', methods=['DELETE'])
 def delete_medicine(user_id, id):
