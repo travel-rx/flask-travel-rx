@@ -1,5 +1,6 @@
 import app
 from app import db, User, Medicine
+from dotenv import load_dotenv
 import json
 import os
 import unittest
@@ -12,14 +13,14 @@ class TestApp(unittest.TestCase):
         db.session.close()
         db.drop_all()
         db.create_all()
-        #
-        # user = User(name='user', email='user@example.com')
-        # db.session.add(user)
-        # db.session.commit()
-        #
-        # med1 = Medicine(name='Med 1', generic_name='generic med 1', dosage_amt='1 mg', with_food=1, frequency=3, user_id=user.id)
-        # db.session.add(med1)
-        # db.session.commit()
+
+        user = User(name='user', email='user@example.com')
+        db.session.add(user)
+        db.session.commit()
+
+        med1 = Medicine(name='Med 1', generic_name='generic med 1', dosage_amt='1 mg', with_food=1, frequency=3, user_id=user.id)
+        db.session.add(med1)
+        db.session.commit()
 
     def test_home_page(self):
         response = self.app.get('/')
@@ -41,7 +42,7 @@ class TestApp(unittest.TestCase):
         response = self.app.get("/api/v1/user/{}/medicines".format(user1.id))
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.get_data())
-        self.assertEqual(len(data), 2)
+        self.assertEqual(len(data), 3)
 
     def test_get_one_medicine(self):
         user3 = User('user 3', 'user1@example.com')
@@ -65,6 +66,18 @@ class TestApp(unittest.TestCase):
         body = {"dosage_amt": "G", "frequency": 5, "generic_name": "OXYCODONE HYDROCHLORIDE AND ACETAMINOPHEN", "name": "Percocet", "user_id": user4.id, "with_food": 0}
 
         response = self.app.post("/api/v1/user/{}/medicines".format(user4.id), data=json.dumps(body), content_type='application/json')
+        self.assertEqual(response.status_code, 302)
+
+    def test_delete_medicine(self):
+        user5 = User('user 5', 'user1@example.com')
+        db.session.add(user5)
+        db.session.commit()
+
+        med5 = Medicine(name='Med 5', generic_name='generic med 5', dosage_amt='5 mg', with_food=0, frequency=5, user_id=user5.id)
+        db.session.add(med5)
+        db.session.commit()
+
+        response = self.app.delete("/api/v1/user/{}/medicines/{}".format(user5.id, med5.id))
         self.assertEqual(response.status_code, 302)
 
 if __name__ == '__main__':
