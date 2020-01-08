@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, redirect
 from dotenv import load_dotenv
+# load_dotenv()
 import requests
 import json
 import os
@@ -11,7 +12,7 @@ from flask_marshmallow import Marshmallow
 
 # Init app
 app = Flask(__name__)
-app.config["DEBUG"] = True
+# app.config["DEBUG"] = True
 
 port = int(os.environ.get("PORT", 5000))
 
