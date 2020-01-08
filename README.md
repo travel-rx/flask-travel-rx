@@ -12,6 +12,7 @@ TravelRx was a 4 person, 13-day project built to allow a user to store their med
 * `pip install requests`
 * `pip install gunicorn`
 * `pip install flask-sqlalchemy`
+* `pip install flask-marshmallow`
 
 ## To Run
 * `python3 app.py`
