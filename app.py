@@ -127,7 +127,8 @@ def add_medicine(user_id):
     db.session.add(new_medicine)
     db.session.commit()
 
-    return redirect('get_medicines', code=303)
+    user = User.query.get(user_id)
+    return redirect(f'/api/v1/user/{user}/medicines')
 
 # Delete single medicine
 @app.route('/api/v1/user/<user_id>/medicines/<id>', methods=['DELETE'])
