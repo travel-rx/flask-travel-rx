@@ -88,6 +88,7 @@ medicines_schema = MedicineSchema(many=True)
 def home():
     return "<h1>TravelRx</h1><p>This site is the homepage for the back end of TravelRx.  Please visit our search endpoint at /api/v1/search or a user's medicine cabinet at /api/v1/medicines.</p>"
 
+# Search for Generic Name of a Medicine
 @app.route('/api/v1/search', methods=['GET'])
 def medicine_search():
     drug = request.args.get('drug', '')
@@ -111,6 +112,8 @@ def get_medicine(user_id, id):
     med = Medicine.query.get(id)
     result = medicine_schema.dump(med)
     return jsonify(result)
+
+# Add Medicine to User's Medicine Cabinet
 
 if __name__ == "main":
     # app.run()
