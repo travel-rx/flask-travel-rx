@@ -5,6 +5,7 @@ TravelRx was a 4 person, 13-day project built to allow a user to store their med
 ## Setup
 * Ensure you are using Python 3.0 or higher: `python3 --version`
 * Ensure you have postgresql installed. If you are using Homebrew: `brew install postgresql`
+* Enter virtual environment: `python3 -m venv venv`
 * `pip install flask`
 * `gem install travis`
 * `pip install pytest coverage`
@@ -15,7 +16,7 @@ TravelRx was a 4 person, 13-day project built to allow a user to store their med
 * `pip install flask-marshmallow`
 
 ## To Run
-* `python3 app.py`
+* `flask run`
 
 ## Test Coverage
 * `coverage report -m app.py`
