@@ -102,8 +102,15 @@ def medicine_search():
 def get_medicines(user_id):
   all_meds = Medicine.query.all()
   result = medicines_schema.dump(all_meds)
-  # import pdb; pdb.set_trace()
   return jsonify(result)
+
+# Get Single Medicine
+@app.route('/api/v1/user/<user_id>/medicines/<id>', methods=['GET'])
+def get_medicine(user_id, id):
+    user = User.query.get(user_id)
+    med = Medicine.query.get(id)
+    result = medicine_schema.dump(med)
+    return jsonify(result)
 
 if __name__ == "main":
     # app.run()
