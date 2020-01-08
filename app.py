@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, redirect
 from dotenv import load_dotenv
 import requests
 import json
@@ -86,7 +86,7 @@ medicines_schema = MedicineSchema(many=True)
 # Endpoints
 @app.route('/', methods=['GET'])
 def home():
-    return "<h1>TravelRx</h1><p>This site is the homepage for the back end of TravelRx.  Please visit our search endpoint at /api/v1/search or a user's medicine cabinet at /api/v1/medicines.</p>"
+    return "<h1>TravelRx</h1><p>This site is the homepage for the back end of TravelRx.  Please visit our search endpoint at /api/v1/search?drug=<drug_name or a user's medicine cabinet at /api/v1/medicines.</p>"
 
 @app.route('/api/v1/search', methods=['GET'])
 def medicine_search():
@@ -111,6 +111,18 @@ def get_medicine(user_id, id):
     med = Medicine.query.get(id)
     result = medicine_schema.dump(med)
     return jsonify(result)
+
+# Delete single medicine
+@app.route('/api/v1/user/<user_id>/medicines/<id>', methods=['DELETE'])
+def delete_medicine(user_id, id):
+    user = User.query.get(user_id)
+    med = Medicine.query.get(id)
+    db.session.delete(med)
+    db.session.commit()
+    all_meds = Medicine.query.all()
+    # return medicines_schema.jsonify(all_meds), 204
+    return redirect(f'/api/v1/user/{user}/medicines')
+
 
 if __name__ == "main":
     # app.run()
