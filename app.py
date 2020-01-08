@@ -86,7 +86,7 @@ medicines_schema = MedicineSchema(many=True)
 # Endpoints
 @app.route('/', methods=['GET'])
 def home():
-    return "<h1>TravelRx</h1><p>This site is the homepage for the back end of TravelRx.  Please visit our search endpoint at /api/v1/search?drug=<drug_name or a user's medicine cabinet at /api/v1/medicines.</p>"
+    return "<h1>TravelRx</h1><p>This site is the homepage for the back end of TravelRx.  Please visit our search endpoint at /api/v1/search?drug=<drug_name> or a user's medicine cabinet at /api/v1/medicines.</p>"
 
 # Search for generic name of a Medicine
 @app.route('/api/v1/search', methods=['GET'])
