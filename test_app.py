@@ -22,11 +22,11 @@ class TestApp(unittest.TestCase):
     #     os.close(self.db_fd)
     #     os.unlink(flaskr.app.config['DATABASE'])
 
-    def test_get_all_medicines(self):
-        response = self.app.get(ALL_MEDICINES_URL)
-        import pdb; pdb.set_trace()
-        data = json.loads(response.get_data())
+    def test_home_page(self):
+        response = self.app.get(BASE_URL)
         self.assertEqual(response.status_code, 200)
+        # import pdb; pdb.set_trace()
+        # data = json.loads(response.get_data())
         # self.assertEqual(len(data), 16)
 
 if __name__ == '__main__':
