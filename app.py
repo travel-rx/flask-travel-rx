@@ -1,5 +1,4 @@
-import flask
-from flask import request, jsonify
+from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 import requests
 import json
@@ -9,7 +8,7 @@ from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.orm import relationship
 
 # Init app
-app = flask.Flask(__name__)
+app = Flask(__name__)
 app.config["DEBUG"] = True
 
 port = int(os.environ.get("PORT", 5000))
@@ -63,7 +62,7 @@ class Medicine(db.Model):
 
 @app.route('/', methods=['GET'])
 def home():
-    return "<h1>TravelRx</h1><p>This site is the homepage for the back end of TravelRx. Please visit our search endpoint at /api/v1/search or a user’s medicine cabinet at /api/v1/medicines.</p>"
+    return "<h1>TravelRx</h1><p>This site is the homepage for the back end of TravelRx.  Please visit our search endpoint at /api/v1/search or a user's medicine cabinet at /api/v1/medicines.</p>"
 
 @app.route('/api/v1/search', methods=['GET'])
 def medicine_search():
@@ -75,5 +74,15 @@ def medicine_search():
     # import pdb; pdb.set_trace()
     return jsonify({"name": brand_name, "generic_name": generic_name})
 
+# Get All Medicines
+@app.route('/api/v1/user/<user_id>/medicine/<id>', methods=['GET'])
+def get_medicines():
+  all_meds = Medicine.query.all()
+  import pdb; pdb.set_trace()
+
+  # result = products_schema.dump(all_products)
+  return jsonify(result.data)
+
 if __name__ == "main":
+    # app.run()
     app.run(debug=True, host='0.0.0.0', port=port)
