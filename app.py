@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.orm import relationship
 from flask_seeder import FlaskSeeder
+from flask_marshmallow import Marshmallow
 
 # Init app
 app = Flask(__name__)
@@ -24,6 +25,8 @@ db = SQLAlchemy(app)
 seeder = FlaskSeeder()
 seeder.init_app(app, db)
 
+ma = Marshmallow(app)
+
 # User Class/Model
 class User(db.Model):
     __tablename__ = 'user'
@@ -39,6 +42,11 @@ class User(db.Model):
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
+
+# User Schema
+class UserSchema(ma.Schema):
+  class Meta:
+    fields = ('id', 'name', 'email')
 
 # Medicines Class/Model
 class Medicine(db.Model):
@@ -63,6 +71,19 @@ class Medicine(db.Model):
     def __repr__(self):
         return '<id {}>'.format(self.id)
 
+# Medicines Schema
+class MedicineSchema(ma.Schema):
+  class Meta:
+    fields = ('id', 'name', 'generic_name', 'dosage_amt', 'with_food', 'frequency', 'user_id')
+
+# Init schema
+user_schema = UserSchema()
+users_schema = UserSchema(many=True)
+
+medicine_schema = MedicineSchema()
+medicines_schema = MedicineSchema(many=True)
+
+# Endpoints
 @app.route('/', methods=['GET'])
 def home():
     return "<h1>TravelRx</h1><p>This site is the homepage for the back end of TravelRx.  Please visit our search endpoint at /api/v1/search or a user's medicine cabinet at /api/v1/medicines.</p>"
@@ -74,17 +95,15 @@ def medicine_search():
     json_response = response.json()
     brand_name = json_response['results'][0]['openfda']['brand_name'][0]
     generic_name = json_response['results'][0]['openfda']['generic_name'][0]
-    # import pdb; pdb.set_trace()
     return jsonify({"name": brand_name, "generic_name": generic_name})
 
 # Get All Medicines
 @app.route('/api/v1/user/<user_id>/medicines', methods=['GET'])
 def get_medicines(user_id):
   all_meds = Medicine.query.all()
-  import pdb; pdb.set_trace()
-
-
-  return jsonify(result.data)
+  result = medicines_schema.dump(all_meds)
+  # import pdb; pdb.set_trace()
+  return jsonify(result)
 
 if __name__ == "main":
     # app.run()
