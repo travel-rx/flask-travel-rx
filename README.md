@@ -18,6 +18,9 @@ TravelRx is a mobile application that helps you search for and track your medica
 * `pip install flask-sqlalchemy`
 * `pip install flask-marshmallow`
 * `pip install marshmallow-sqlalchemy`
+* ```psql
+CREATE DATABASE DATABASE_NAME_dev;
+\q```
 
 ## To Run
 * `flask run`
@@ -29,6 +32,169 @@ TravelRx is a mobile application that helps you search for and track your medica
 ## Travel Rx - Backend
 
 ### Endpoint Documentation
+* Local server: `http://localhost:5000`
+* Production site: `https://flask-travel-rx.herokuapp.com`
+
+#### Running in Postman
+In Postman, append the url to expose the below endpoints or click the `Run in Postman` button to import a collection of the endpoints.
+
+Postman collection for production site endpoints: [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/79d38c30ad43c49ba9e6)
+
+* GET /api/v1/search?drug=xanax
+Expected response:
+```
+status: 200 
+{
+   "name": "Xanax",
+   "generic_name": "Alprazolam"
+}
+```
+
+* POST /api/v1/user/:user_id/medicines
+Request body:
+```
+{
+  "dosage_amt": "2mg",
+  "frequency": 1,
+  "generic_name": "Pseudoephedrine",
+  "name": "sudafed",
+  "user_id": 1,
+  "with_food": true
+}
+```
+
+Expected response:
+```
+[
+  {
+    "dosage_amt": "3mg",
+    "frequency": 1,
+    "generic_name": "SERTRALINE HYDROCHLORIDE",
+    "id": 2,
+    "name": "zoloft",
+    "user_id": 1,
+    "with_food": false
+  },
+  {
+    "dosage_amt": "2mg",
+    "frequency": 1,
+    "generic_name": "ALPRAZOLAM",
+    "id": 1,
+    "name": "xanax",
+    "user_id": 1,
+    "with_food": true
+  },
+  {
+    "dosage_amt": "2mg",
+    "frequency": 1,
+    "generic_name": "ACETAMINOPHEN",
+    "id": 3,
+    "name": "TYLENOL Extra Strength",
+    "user_id": 1,
+    "with_food": true
+  },
+  {
+    "dosage_amt": "2mg",
+    "frequency": 1,
+    "generic_name": "Pseudoephedrine",
+    "id": 6,
+    "name": "sudafed",
+    "user_id": 1,
+    "with_food": true
+  }
+]
+```
+
+* GET /api/v1/user/:user_id/medicines
+Expected response:
+```
+[
+  {
+    "dosage_amt": "3mg",
+    "frequency": 1,
+    "generic_name": "SERTRALINE HYDROCHLORIDE",
+    "id": 2,
+    "name": "zoloft",
+    "user_id": 1,
+    "with_food": false
+  },
+  {
+    "dosage_amt": "2mg",
+    "frequency": 1,
+    "generic_name": "ALPRAZOLAM",
+    "id": 1,
+    "name": "xanax",
+    "user_id": 1,
+    "with_food": true
+  },
+  {
+    "dosage_amt": "2mg",
+    "frequency": 1,
+    "generic_name": "ACETAMINOPHEN",
+    "id": 3,
+    "name": "TYLENOL Extra Strength",
+    "user_id": 1,
+    "with_food": true
+  },
+  {
+    "dosage_amt": "2mg",
+    "frequency": 1,
+    "generic_name": "Pseudoephedrine",
+    "id": 6,
+    "name": "sudafed",
+    "user_id": 1,
+    "with_food": true
+  }
+]
+```
+
+* GET /api/v1/user/:user_id/medicines/3
+Expected response:
+```
+{
+    "dosage_amt": "2mg",
+    "frequency": 1,
+    "generic_name": "ACETAMINOPHEN",
+    "id": 3,
+    "name": "TYLENOL Extra Strength",
+    "user_id": 1,
+    "with_food": true
+ }
+```
+
+* DELETE /api/v1/user/:user_id/medicine/6
+Expected response:
+```
+[
+  {
+    "dosage_amt": "3mg",
+    "frequency": 1,
+    "generic_name": "SERTRALINE HYDROCHLORIDE",
+    "id": 2,
+    "name": "zoloft",
+    "user_id": 1,
+    "with_food": false
+  },
+  {
+    "dosage_amt": "2mg",
+    "frequency": 1,
+    "generic_name": "ALPRAZOLAM",
+    "id": 1,
+    "name": "xanax",
+    "user_id": 1,
+    "with_food": true
+  },
+  {
+    "dosage_amt": "2mg",
+    "frequency": 1,
+    "generic_name": "ACETAMINOPHEN",
+    "id": 3,
+    "name": "TYLENOL Extra Strength",
+    "user_id": 1,
+    "with_food": true
+  }
+]
+```
 
 ### Tech Stack
 * Python (Flask)
