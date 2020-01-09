@@ -30,8 +30,8 @@ TravelRx is a mobile application that helps you search for and track your medica
 ### Endpoint Documentation
 
 ### Tech Stack
-Python (Flask)
-Unittest 
+* Python (Flask)
+* Unittest 
 
 ### Schema:
 ![Database Schema](https://user-images.githubusercontent.com/45922590/71044601-53988b00-20ef-11ea-9f6d-84cdc4d071e5.png)
