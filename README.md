@@ -189,6 +189,8 @@ status code: 204
 ### Tech Stack
 * Python (Flask)
 * Unittest 
+* SQLAlchemy
+* FDA Drug Labelling API
 
 ### Schema:
 ![Database Schema](https://user-images.githubusercontent.com/45922590/71044601-53988b00-20ef-11ea-9f6d-84cdc4d071e5.png)
