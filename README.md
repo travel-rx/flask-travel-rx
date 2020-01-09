@@ -171,35 +171,7 @@ Expected response:
 ```
 Expected response:
 
-[
-  {
-    "dosage_amt": "3mg",
-    "frequency": 1,
-    "generic_name": "SERTRALINE HYDROCHLORIDE",
-    "id": 2,
-    "name": "zoloft",
-    "user_id": 1,
-    "with_food": false
-  },
-  {
-    "dosage_amt": "2mg",
-    "frequency": 1,
-    "generic_name": "ALPRAZOLAM",
-    "id": 1,
-    "name": "xanax",
-    "user_id": 1,
-    "with_food": true
-  },
-  {
-    "dosage_amt": "2mg",
-    "frequency": 1,
-    "generic_name": "ACETAMINOPHEN",
-    "id": 3,
-    "name": "TYLENOL Extra Strength",
-    "user_id": 1,
-    "with_food": true
-  }
-]
+status code: 204
 ```
 
 ### Tech Stack
