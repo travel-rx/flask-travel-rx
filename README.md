@@ -190,6 +190,7 @@ status code: 204
 * Python (Flask)
 * Unittest 
 * SQLAlchemy
+* PostgreSQL
 * FDA Drug Labelling API
 
 ### Schema:
