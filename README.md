@@ -2,7 +2,7 @@
 
 TravelRx is a mobile application that helps you search for and track your medication on-the-go. Additionally, the application comes with a translation feature, allowing the user to translate frequently-used emergency phrases in five of the most commonly-spoken languages: French, Spanish, German, Mandarin, and Arabic.
 
-#### [Frontend Repository](https://github.com/travel-rx/fe-travel-rx)
+#### [Front End Repository](https://github.com/travel-rx/fe-travel-rx)
 #### [Organization](https://github.com/travel-rx)
 
 ## Setup
