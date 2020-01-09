@@ -43,6 +43,7 @@ Postman collection for production site endpoints: [![Run in Postman](https://run
 * GET /api/v1/search?drug=xanax
 ```
 Expected response:
+
 status: 200 
 {
    "name": "Xanax",
@@ -53,6 +54,7 @@ status: 200
 * POST /api/v1/user/:user_id/medicines
 ```
 Request body:
+
 {
   "dosage_amt": "2mg",
   "frequency": 1,
