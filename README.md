@@ -1,6 +1,9 @@
 # TravelRx
 
-TravelRx was a 4 person, 13-day project built to allow a user to store their medication information and easily access generic medication names and popular emergency medical phrases in multiple popular languages while traveling.
+TravelRx is a mobile application that helps you search for and track your medication on-the-go. Additionally, the application comes with a translation feature, allowing the user to translate frequently-used emergency phrases in five of the most commonly-spoken languages: French, Spanish, German, Mandarin, and Arabic.
+
+#### [Frontend Repository](https://github.com/travel-rx/fe-travel-rx)
+#### [Organization](https://github.com/travel-rx)
 
 ## Setup
 * Ensure you are using Python 3.0 or higher: `python3 --version`
@@ -24,18 +27,20 @@ TravelRx was a 4 person, 13-day project built to allow a user to store their med
 
 ## Travel Rx - Backend
 
-### Tech Stack:
+### Endpoint Documentation
+
+### Tech Stack
 Python (Flask)
 Unittest 
 
 ### Schema:
 ![Database Schema](https://user-images.githubusercontent.com/45922590/71044601-53988b00-20ef-11ea-9f6d-84cdc4d071e5.png)
 
-## Contributors:
-#### Backend Engineers:
+## Contributors
+#### Backend Engineers
 [Leiya Kenney](https://github.com/leiyakenney)
 [Smitha Hosmani](https://github.com/hsmitha26)
 
-#### Frontend Engineers:
+#### Frontend Engineers
 [Amy Rippeto](https://github.com/aripp2)
 [Jeannie Evans](https://github.com/jmevans0211)
