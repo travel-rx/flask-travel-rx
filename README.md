@@ -34,7 +34,8 @@ TravelRx project was completed in 13 days by a team comprised of two front end a
 * `pip install marshmallow-sqlalchemy`
 * ```psql
 CREATE DATABASE DATABASE_NAME_dev;
-\q```
+\q
+```
 
 ## To Run
 * `flask run`
