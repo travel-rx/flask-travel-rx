@@ -32,10 +32,7 @@ TravelRx project was completed in 13 days by a team comprised of two front end a
 * `pip install flask-sqlalchemy`
 * `pip install flask-marshmallow`
 * `pip install marshmallow-sqlalchemy`
-* ```psql
-CREATE DATABASE DATABASE_NAME_dev;
-\q
-```
+* After entering `psql` into terminal: `CREATE DATABASE DATABASE_NAME_dev;`
 
 ## To Run
 * `flask run`
