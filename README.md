@@ -41,8 +41,8 @@ In Postman, append the url to expose the below endpoints or click the `Run in Po
 Postman collection for production site endpoints: [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/79d38c30ad43c49ba9e6)
 
 * GET /api/v1/search?drug=xanax
-Expected response:
 ```
+Expected response:
 status: 200 
 {
    "name": "Xanax",
@@ -51,8 +51,8 @@ status: 200
 ```
 
 * POST /api/v1/user/:user_id/medicines
-Request body:
 ```
+Request body:
 {
   "dosage_amt": "2mg",
   "frequency": 1,
@@ -63,8 +63,9 @@ Request body:
 }
 ```
 
-Expected response:
 ```
+Expected response:
+
 [
   {
     "dosage_amt": "3mg",
@@ -106,8 +107,9 @@ Expected response:
 ```
 
 * GET /api/v1/user/:user_id/medicines
-Expected response:
 ```
+Expected response:
+
 [
   {
     "dosage_amt": "3mg",
@@ -149,8 +151,9 @@ Expected response:
 ```
 
 * GET /api/v1/user/:user_id/medicines/3
-Expected response:
 ```
+Expected response:
+
 {
     "dosage_amt": "2mg",
     "frequency": 1,
@@ -163,8 +166,9 @@ Expected response:
 ```
 
 * DELETE /api/v1/user/:user_id/medicine/6
-Expected response:
 ```
+Expected response:
+
 [
   {
     "dosage_amt": "3mg",
