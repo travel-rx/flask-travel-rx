@@ -11,7 +11,7 @@ TravelRx is a mobile application that helps you search for and track your medica
 * Enter virtual environment: `python3 -m venv venv`
 * `pip install flask`
 * `gem install travis`
-* `pip install pytest coverage`
+* `pip install coverage`
 * `pip install python-dotenv`
 * `pip install requests`
 * `pip install gunicorn`
@@ -23,7 +23,8 @@ TravelRx is a mobile application that helps you search for and track your medica
 * `flask run`
 
 ## Test Coverage
-* `coverage report -m app.py`
+* `coverage run test_app.py`
+* `coverage report -m`
 
 ## Travel Rx - Backend
 
